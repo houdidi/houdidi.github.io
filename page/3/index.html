@@ -233,6 +233,270 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/02/Vue（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/02/Vue（三）/" itemprop="url">Vue（三）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-02T23:12:22+08:00">
+                2016-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code><br>    工程<br>脚手架<br>vue-cli<br>npm install vue-cli -g</code></p>
+<p>创建项目<br>vue init webpack 工程名</p>
+<p>启动工程</p>
+<p>npm start<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/30/Vue（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/30/Vue（二）/" itemprop="url">Vue（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-30T23:22:24+08:00">
+                2016-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code><br>    缩写：<br>v-on   – @<br>v-bind – :<br>v-on:click — @click<br>v-bind:src — :src</code></p>
+<p>div @click.self=”sayHello()”<br>    div @click=”sayHi()”&gt;1div<br>    div/div<br>div</p>
+<p>防止二次提交:</p>
+<ol>
+<li>点击一次之后disabled按钮</li>
+<li>loading</li>
+<li>flag</li>
+</ol>
+<p>组件的data属性必须是function，里面return对象。</p>
+<p>组件体现了代码共同化的思想，便于维护。<br>方便团队并行作业，提高开发效率。</p>
+<p>组件用法有两种：</p>
+<ol>
+<li>自定义标签的用法 <header-jd></header-jd></li>
+<li>用is属性引用 <tr is="header-jd"></tr></li>
+</ol>
+<p>单向数据流：数据从父组件流向（传递到）子组件<br>这是为了防止子组件无意间修改了父组件的状态，来避免应用的数据流变得难以理解。</p>
+<p>向组件传递字符串1 &lt;组件名 username=”1”&gt;<br>向组件传递数值1 &lt;组件名 :username=”1”&gt;</p>
+<p>父子传递：单向数据流<br>子父传递：自定义事件传递<br>非父子组件传递：事件总线 event bus<br>var bus = new Vue();<br>发送方调用 bus.$emit(“事件名”, 数据)<br>接收方在生命周期中注册接收函数 bus.$on(“事件名”, 回调函数)</p>
+<p>keep-alive：组件缓存功能，提高组件的切换速度。</p>
+<hr>
+<p>js库的版本升级的时候会对废弃的方法进行删除处理，<br>会导致程序崩溃。因此不要升级库的版本。</p>
+<p>升级库版本会导致重构。<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/29/Vue（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1315,267 +1579,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/20/nodejs基础（三）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/20/nodejs基础（三）/" itemprop="url">nodejs基础（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-20T22:24:11+08:00">
-                2016-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code><br>    express：<br><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">http://www.expressjs.com.cn/</a><br>express脚手架：<br>用来快速搭建工程的工具<br>安装脚手架：<br>npm install express-generator -g<br>创建工程：<br>express 工程名 -e<br>安装所有组件（首先需要进到工程目录中）<br>npm install<br>启动工程<br>npm start<br>默认端口号：<br>3000<br>修改端口：<br>bin\www文件</code></p>
-<p>中间件：<br>middleware，服务器接收到请求为开始，响应请求为结束，这两者之间的处理由中间件来进行。<br>作用：对服务器功能进行扩展。</p>
-<p>后端模板：<br>数据的填充过程是在服务器端完成的，填充完成以后发送给客户端。<br>优点：提高SEO</p>
-<p>前端模板：<br>数据的填充过程是在浏览器上完成的。<br>缺点：不利于SEO<br></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/16/nodejs基础（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/16/nodejs基础（二）/" itemprop="url">nodejs基础（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-16T21:12:21+08:00">
-                2016-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code><br>    1.commonJS规范：<br>Nodejs的模块系统就采用CommonJS模式。CommonJS标准规定，一个单独的文件就是一个模块，模块内将需要对外暴露的变量放到exports对象里，可以是任意对象，函数，数组等，未放到exports对象里的都是私有的。用require方法加载模块，即读取模块文件获得exports对象。</code></p>
-<p>自定义模块引入的时候，必须写路径，如果是同级目录需要写./<br>模块化的优点：保护私有变量。代码共通化：减少冗余，便于维护。</p>
-<p>面试题：<br>module.exports和exports的关系：exports是指向module.exports的引用<br>exports = module.exports<br>注意点：不能对exports进行整体赋值。<br>exports.a = a     OK<br>exports = {a:a} NG<br>但是：module.exports怎么公开都没问题。</p>
-<ol start="2">
-<li>包管理相关<br>淘宝镜像安装：<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></li>
-</ol>
-<p>npm：nodejs的包管理工具 nodejs package management<br>npm常用命令：<br>-g 全局安装<br>–save 缩写成-S 本地安装并且安装记录存在package.json文件中<br>–save-dev 缩写成 -D 本地安装并且安装记录存在package.json文件的devDependencies中。这个依赖只有开发阶段使用。</p>
-<p>npm install 依赖名<br>npm update 依赖名<br>npm uninstall 依赖名<br>安装所有依赖(会把package.json文件中的所有依赖都安装)<br>npm install</p>
-<p>坑：环境相关的。建议在C创建目录并安装。<br>一个项目中的依赖不能npm和cnpm混用。会有bug的。</p>
-<p>nodejs的另外一个包管理工具：yarn<br>官网:<br><a href="https://yarnpkg.com/" target="_blank" rel="noopener">https://yarnpkg.com/</a><br>yarn常用命令：<br>yarn add 依赖名<br>yarn upgrade 依赖名<br>yarn remove 依赖名<br>安装所有依赖<br>yarn add</p>
-<ol start="3">
-<li><p>爬虫 spider<br>所有的npm的库都在<a href="https://www.npmjs.com/上进行管理。" target="_blank" rel="noopener">https://www.npmjs.com/上进行管理。</a><br>第三方组件必须首先安装才能用</p>
-</li>
-<li><p>如果汉字传输过程中发生乱码<br>客户端：编码<br>服务端：解码<br>编码 –&gt; 解码<br>encodeURIComponent  –&gt; decodeURIComponent 所有语言都有这个解码方法,推荐这个方案<br>escapse –&gt; unescapse<br>os<br>child_process exec<br>querystring query字符串<br> escape<br> unescape<br> encodeURIComponent<br> decodeURIComponent<br> 编码和解码：解决了传输过程中汉字乱码的问题。<br>url.resolve(from, to)<br>解决的问题方法：<br>脑图 xmind<br>头脑风暴 多人参与<br>11点以后回家睡觉</p>
-</li>
-</ol>
-<hr>
-<p>扩展：<br>deadLine：项目最终交付日。<br>996<br>PG 程序员<br>SE 高级程序员<br>SSE 资深程序员<br>PL 小组长<br>PM 项目经理—–架构师<br>技术总监</p>
-<p>CTO 首席技术官<br></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1630,7 +1633,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

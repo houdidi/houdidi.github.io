@@ -352,6 +352,258 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/关于线程io执行顺序（补充）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/关于线程io执行顺序（补充）/" itemprop="url">task queue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T23:37:41+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>首先知晓：</code></p>
+<p>js是单线程语言<br>也就是说一次就只能做一件事情。</p>
+<p>多数的网站不需要大量计算，程序花费的时间主要集中在磁盘 I/O 和网络 I/O 上面</p>
+<p>虽然SSD读取很快，但和CPU处理指令的速度比起来也不在一个数量级上，而且网络上一个数据包来回的时间更慢（注意过游戏的延迟吗）</p>
+<p>so:<br>·一些cpu直接执行的任务就成了优先执行主线任务，然后需要io返回数据的任务就成了等待被执行的任务<br>·所以才会有同步任务（synchronous）和异步任务（asynchronous）之分</p>
+<p>同步任务：在主线程上排队执行的任务，前一个任务执行完毕，才能执行后一个任务；</p>
+<p>异步任务：不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
+<p>总之：只要主线程空了，就会去读取”任务队列”，这就是JavaScript的运行机制</p>
+<p>·一个事件循环(event loop)会有一个或多个任务队列(task queue)<br>·task queue 就是 macrotask queue<br>·每一个 event loop 都有一个 microtask queue<br>·task queue == macrotask queue != microtask queue<br>·一个任务 task 可以放入 macrotask queue 也可以放入 microtask queue 中<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/15/关于线程io执行顺序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/15/关于线程io执行顺序/" itemprop="url">关于线程i/o执行顺序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T23:11:22+08:00">
+                2018-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code><br>Microtasks Macrotasks<br>任务队列不止一个，还有 microtasks 和 macrotasks<br>microtasks:<br>process.nextTick<br>promise<br>Object.observe<br>MutationObserver</code></p>
+<p>macrotasks:<br>setTimeout<br>setInterval<br>setImmediate<br>I/O<br>UI渲染</p>
+<p>规范：<a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-queue" target="_blank" rel="noopener">https://html.spec.whatwg.org/multipage/webappapis.html#task-queue</a></p>
+<p>执行原理：<br>·事件循环的顺序，决定了JavaScript代码的执行顺序。<br>·它从script(整体代码)开始第一次循环。<br>·之后全局上下文进入函数调用栈。<br>·直到调用栈清空(只剩全局)，然后执行所有的micro-task。<br>·当所有可执行的micro-task执行完毕之后。<br>·循环再次从macro-task开始，找到其中一个任务队列执行完毕，然后再执行所有的micro-task，这样一直循环下去</p>
+<p>还要注意一点：<br>包裹在一个 script 标签中的js代码也是一个 task 确切说是 macrotask。<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/移动端动态设置字体大小！！！！！！！！/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1204,262 +1456,6 @@ objectgetOwnProperty遍历所有属性，
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/25/多文件迅雷批量下载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/25/多文件迅雷批量下载/" itemprop="url">多文件迅雷批量下载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T23:01:15+08:00">
-                2017-09-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code></code></p>
-<p>1.引入批量下载的js文件</p>
-<figure class="highlight plain"><figcaption><span>src</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">2.设置相关参数</span><br></pre></td></tr></table></figure>
-<p>var pid = “12345”; //迅雷联盟合作号，没有可以随便填  </p>
-<p>var url1 = “http:\/\/down.sandai.net/thunder7/Thunder_dl_7.9.12.4646.exe”;   //下载文件1  </p>
-<p>var title1 = “迅雷7”;    //文件1标题  </p>
-<p>var url2 = “http:\/\/down.sandai.net/thundervip/ThunderVIP_Setup.exe”;   //下载文件2  </p>
-<p>var title2 = “迅雷VIP尊享版”;    //文件2标题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.添加下载按钮</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```&lt;button onclick=&quot;batchDownload()&quot;&gt;批量下载&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
-<p>4.编写批量下载方法</p>
-<figure class="highlight plain"><figcaption><span>batchDownload()&#123;  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    &lt;span style=&quot;white-space:pre;&quot;&gt; &lt;/span&gt;BatchTasker.BeginBatch(4,pid);    //开始批量添加  </span><br><span class="line"></span><br><span class="line">    &lt;span style=&quot;white-space:pre;&quot;&gt; &lt;/span&gt;BatchTasker.AddTask(ThunderEncode(url1), </span><br><span class="line">    &lt;span style=&quot;white-space:pre;&quot;&gt; &lt;/span&gt;BatchTasker.AddTask(ThunderEncode(url2), title2);    //添加下载任务2  </span><br><span class="line"></span><br><span class="line">    &lt;span style=&quot;white-space:pre;&quot;&gt; &lt;/span&gt;BatchTasker.EndBatch(pid);    //结束添加，开始下载  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/11/AMDCMDCommonJs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/11/AMDCMDCommonJs/" itemprop="url">AMD/CMD/CommonJs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T13:54:52+08:00">
-                2017-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code><br>知识点1：AMD/CMD/CommonJs是JS模块化开发的标准，目前对应的实现是RequireJs/SeaJs/nodeJs.</code></p>
-<p>知识点2：CommonJs主要针对服务端，AMD/CMD主要针对浏览器端，所以最容易混淆的是AMD/CMD。（顺便提一下，针对服务器端和针对浏览器端有什么本质的区别呢？服务器端一般采用同步加载文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。这里如果有其他后端语言，如java，经验的‘玩家’应该更容易理解。而浏览器端要保证效率，需要采用异步加载，这就需要一个预处理，提前将所需要的模块文件并行加载好。）</p>
-<p>知识点3 : AMD/CMD区别，虽然都是并行加载js文件，但还是有所区别，AMD是预加载，在并行加载js文件同时，还会解析执行该模块（因为还需要执行，所以在加载某个模块前，这个模块的依赖模块需要先加载完成）；而CMD是懒加载，虽然会一开始就并行加载js文件，但是不会执行，而是在需要的时候才执行。</p>
-<p>知识点4：AMD/CMD的优缺点.一个的优点就是另一个的缺点， 可以对照浏览。<br>                AMD优点：加载快速，尤其遇到多个大文件，因为并行解析，所以同一时间可以解析多个文件。<br>                AMD缺点：并行加载，异步处理，加载顺序不一定，可能会造成一些困扰，甚至为程序埋下大坑。</p>
-<pre><code>CMD优点：因为只有在使用的时候才会解析执行js文件，因此，每个JS文件的执行顺序在代码中是有体现的，是可控的。
-CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步执行（串行执行），因此时间是所有文件解析执行时间之和，尤其在文件较多较大时，这种缺点尤为明显。
-</code></pre><p>知识点5：如何使用？CommonJs的话，因为nodeJs就是它的实现，所以使用node就行，也不用引入其他包。AMD则是通过<script>标签引入RequireJs，具体语法还是去看官方文档或者百度一下吧。CMD则是引入SeaJs。<br></code></p>
-</script></p>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1514,7 +1510,7 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
