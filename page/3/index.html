@@ -192,11 +192,31 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/2018/05/08/个人简历/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
           </a>
         </li>
       
@@ -1225,8 +1245,7 @@
 <p>生成秘钥方式：openssl genrsa  -out server.pem 1024</p>
 <p>createHmac</p>
 <p>加密方式：</p>
-<p>var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;<br>var key = pem.toString(“ascii”);//转换成ascii吗；<br>const hash = crypto.createHmac(‘sha1’, key)//创建加密方式：<br>.update(passworld)  //加密数据：<br>.digest(‘hex’);     //数据转码：</p>
-<p>Cipher</p>
+<figure class="highlight plain"><figcaption><span>pem </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var key = pem.toString(&quot;ascii”);//转换成ascii吗；</span><br><span class="line">const hash = crypto.createHmac(&apos;sha1&apos;, key)//创建加密方式：</span><br><span class="line">.update(passworld)  //加密数据：</span><br><span class="line">.digest(&apos;hex’);     //数据转码：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Cipher</span><br></pre></td></tr></table></figure>
 <p>这是无秘钥加密方式</p>
 <p>//无秘钥加密：<br>//创建一个密码 stream =&gt; 参数 为加密方式 参数2 密文中的一个后缀;<br>const cipher = crypto.createCipher(‘aes192’, “a passworld”);<br>//载入一个密码，并规定输入和输出值;<br>let encrypted = cipher.update(passworld, ‘utf8’, ‘hex’);<br>//最后输出数据 ， 及后缀。<br>encrypted += cipher.final(‘hex’);</p>
 <p>Tocken：</p>
@@ -1244,40 +1263,12 @@
      2.将服务器发送的tocken存在cookie之中 。 
      3.访问服务器，http请求就会默认携带cookie给服务端去验证。
 </code></pre><p>tocken的构成：</p>
-<pre><code>         tocken 实现的标准有分成多种，现在主要来说JWT标准，该标准共分成三个部分1.header  2.payload 3. Sinature
+<pre><code>tocken 实现的标准有分成多种，现在主要来说JWT标准，该标准共分成三个部分1.header  2.payload 3. Sinature
 
-         1.header 部分主要用于描述协议名称及数据加密算法。
-
-
-
- {
-   &quot;typ&quot;: &quot;JWT&quot;,
-   &quot;alg&quot;: “MD5&quot;
- }
-         经过hex转码后，变成如下形式：
-
-
-7b22747970223a224a5754222c22616c67223a224d4435227d
-</code></pre><p>转换方法封装：</p>
-<p>function objTohex(obj){<br>    var s = JSON.stringify(obj);<br>    var buff = new Buffer(s);<br>    var hex = buff.toString(“hex”);<br>    return hex;<br>}</p>
-<p>function hexToObj(hex){<br>    var buff = new Buffer(hex,”hex”);<br>    var s = buff.toString(“utf8”);<br>    var obj = JSON.parse(s);<br>    return obj;<br>}</p>
-<pre><code>2.payload 部分：
-</code></pre><p>   payload部分主要构成：</p>
-<ul>
-<li>iss：Issuer，发行者</li>
-<li>sub：Subject，主题</li>
-<li>aud：Audience，观众</li>
-<li>exp：Expiration time，过期时间</li>
-<li>nbf：Not before</li>
-<li>iat：Issued at，发行时间</li>
-<li>jti：JWT ID</li>
-</ul>
-<p>{<br>    “iss”: “yanghuaizhi.com”,<br>    “exp”: “10000”,<br>    “name”: “yanghuaizhi”<br>}</p>
-<p>转换成hex编码会编程这样：</p>
-<p>7b22697373223a2279616e67687561697a68692e636f6d222c22657870223a223130303030222c226e616d65223a2279616e67687561697a6869227d</p>
-<p>Sinature部分：</p>
-<p>这部分其实就是两者数据相加，然后进行加密；</p>
-<p>var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;<br>var key = pem.toString(“ascii”);//转换成ascii吗；<br>const hash = crypto.createHmac(‘sha1’, key)//创建加密方式：<br>.update(header + payload)  //加密数据：<br>.digest(‘hex’);     //数据转码：</p>
+1.header 部分主要用于描述协议名称及数据加密算法。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">   &quot;typ&quot;: &quot;JWT&quot;,</span><br><span class="line">   &quot;alg&quot;: “MD5&quot;</span><br><span class="line"> &#125;</span><br><span class="line">         经过hex转码后，变成如下形式：</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">7b22747970223a224a5754222c22616c67223a224d4435227d</span><br></pre></td></tr></table></figure>
+<p>转换方法封装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">function objTohex(obj)&#123;</span><br><span class="line">    var s = JSON.stringify(obj);</span><br><span class="line">    var buff = new Buffer(s);</span><br><span class="line">    var hex = buff.toString(&quot;hex&quot;);</span><br><span class="line">    return hex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hexToObj(hex)&#123;</span><br><span class="line">    var buff = new Buffer(hex,&quot;hex&quot;);</span><br><span class="line">    var s = buff.toString(&quot;utf8&quot;);</span><br><span class="line">    var obj = JSON.parse(s);</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            2.payload 部分：</span><br><span class="line"></span><br><span class="line">   payload部分主要构成：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">* iss：Issuer，发行者</span><br><span class="line">* sub：Subject，主题</span><br><span class="line">* aud：Audience，观众</span><br><span class="line">* exp：Expiration time，过期时间</span><br><span class="line">* nbf：Not before</span><br><span class="line">* iat：Issued at，发行时间</span><br><span class="line">* jti：JWT ID</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;iss&quot;: “yanghuaizhi.com&quot;,</span><br><span class="line">    &quot;exp&quot;: “10000&quot;,</span><br><span class="line">    &quot;name&quot;: “yanghuaizhi&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">                                </span><br><span class="line">转换成hex编码会编程这样：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">7b22697373223a2279616e67687561697a68692e636f6d222c22657870223a223130303030222c226e616d65223a2279616e67687561697a6869227d</span><br><span class="line"></span><br><span class="line">Sinature部分：</span><br><span class="line"></span><br><span class="line">这部分其实就是两者数据相加，然后进行加密；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var pem = fs.readFileSync(__dirname+&quot;/../server.pem”);//读取密码文件;</span><br><span class="line">var key = pem.toString(&quot;ascii”);//转换成ascii吗；</span><br><span class="line">const hash = crypto.createHmac(&apos;sha1&apos;, key)//创建加密方式：</span><br><span class="line">.update(header + payload)  //加密数据：</span><br><span class="line">.digest(&apos;hex’);     //数据转码：</span><br></pre></td></tr></table></figure>
 <p></p>
 
           
@@ -1631,7 +1622,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
@@ -1641,6 +1632,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
