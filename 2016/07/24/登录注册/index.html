@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Crypto 生成秘钥方式：openssl genrsa  -out server.pem 1024 createHmac 加密方式： var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;var key = pem.toString(“ascii”);//转换成ascii吗；const hash = crypto.c">
+<meta name="keywords" content="js,web,css,html5,博客,前端,编程,工程师,攻城狮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="登录注册">
+<meta property="og:url" content="http://yoursite.com/2016/07/24/登录注册/index.html">
+<meta property="og:site_name" content="这真是个有趣的世界啊">
+<meta property="og:description" content="Crypto 生成秘钥方式：openssl genrsa  -out server.pem 1024 createHmac 加密方式： var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;var key = pem.toString(“ascii”);//转换成ascii吗；const hash = crypto.c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-08T10:16:05.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="登录注册">
+<meta name="twitter:description" content="Crypto 生成秘钥方式：openssl genrsa  -out server.pem 1024 createHmac 加密方式： var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;var key = pem.toString(“ascii”);//转换成ascii吗；const hash = crypto.c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/24/登录注册/"/>
+
+
+
+
+
+  <title>登录注册 | 这真是个有趣的世界啊</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">这真是个有趣的世界啊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/24/登录注册/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">登录注册</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-24T22:21:24+08:00">
+                2016-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code><br>    Crypto</code></p>
+<p>生成秘钥方式：openssl genrsa  -out server.pem 1024</p>
+<p>createHmac</p>
+<p>加密方式：</p>
+<p>var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;<br>var key = pem.toString(“ascii”);//转换成ascii吗；<br>const hash = crypto.createHmac(‘sha1’, key)//创建加密方式：<br>.update(passworld)  //加密数据：<br>.digest(‘hex’);     //数据转码：</p>
+<p>Cipher</p>
+<p>这是无秘钥加密方式</p>
+<p>//无秘钥加密：<br>//创建一个密码 stream =&gt; 参数 为加密方式 参数2 密文中的一个后缀;<br>const cipher = crypto.createCipher(‘aes192’, “a passworld”);<br>//载入一个密码，并规定输入和输出值;<br>let encrypted = cipher.update(passworld, ‘utf8’, ‘hex’);<br>//最后输出数据 ， 及后缀。<br>encrypted += cipher.final(‘hex’);</p>
+<p>Tocken：</p>
+<pre><code>在浏览网页的过程中，经常会被多次重复的登录搞得烦不胜烦，因为我们使用的是 “即用即走的” http协议，这货在传输完成后则断开连接， web端为了帮助我们实现免登陆，从而发明了，cookie , localstorage，sessionstorage,等技术，这些技术可以将登录信息暂时或者永久性地存储在web端， 但是这些技术安全性不高，在通讯过程中被劫持的概率大，所以在存储数据的时候，我们一般情况下并不会向cookie中直接放入用户的账号密码 ， 所以一个类似于令牌的东西出现了， 这货叫Tocken ，当然很多人也叫他 “令牌”。
+</code></pre><p>tocken的原理：</p>
+<pre><code>服务端实现的原则是：
+
+      1. 用户成功登陆，根据需求决定是否创建免登陆 tocken。    
+      2. 创建tocken，发送给web端。    
+      3. 用户访问时，查看是否存在tocken，如果存在，验证，正确后返回用户所需数据。
+
+ Web端实现非常简单：
+
+     1.向服务器发送免登陆（创建tocken）请求。
+     2.将服务器发送的tocken存在cookie之中 。 
+     3.访问服务器，http请求就会默认携带cookie给服务端去验证。
+</code></pre><p>tocken的构成：</p>
+<pre><code>         tocken 实现的标准有分成多种，现在主要来说JWT标准，该标准共分成三个部分1.header  2.payload 3. Sinature
+
+         1.header 部分主要用于描述协议名称及数据加密算法。
+
+
+
+ {
+   &quot;typ&quot;: &quot;JWT&quot;,
+   &quot;alg&quot;: “MD5&quot;
+ }
+         经过hex转码后，变成如下形式：
+
+
+7b22747970223a224a5754222c22616c67223a224d4435227d
+</code></pre><p>转换方法封装：</p>
+<p>function objTohex(obj){<br>    var s = JSON.stringify(obj);<br>    var buff = new Buffer(s);<br>    var hex = buff.toString(“hex”);<br>    return hex;<br>}</p>
+<p>function hexToObj(hex){<br>    var buff = new Buffer(hex,”hex”);<br>    var s = buff.toString(“utf8”);<br>    var obj = JSON.parse(s);<br>    return obj;<br>}</p>
+<pre><code>2.payload 部分：
+</code></pre><p>   payload部分主要构成：</p>
+<ul>
+<li>iss：Issuer，发行者</li>
+<li>sub：Subject，主题</li>
+<li>aud：Audience，观众</li>
+<li>exp：Expiration time，过期时间</li>
+<li>nbf：Not before</li>
+<li>iat：Issued at，发行时间</li>
+<li>jti：JWT ID</li>
+</ul>
+<p>{<br>    “iss”: “yanghuaizhi.com”,<br>    “exp”: “10000”,<br>    “name”: “yanghuaizhi”<br>}</p>
+<p>转换成hex编码会编程这样：</p>
+<p>7b22697373223a2279616e67687561697a68692e636f6d222c22657870223a223130303030222c226e616d65223a2279616e67687561697a6869227d</p>
+<p>Sinature部分：</p>
+<p>这部分其实就是两者数据相加，然后进行加密；</p>
+<p>var pem = fs.readFileSync(__dirname+”/../server.pem”);//读取密码文件;<br>var key = pem.toString(“ascii”);//转换成ascii吗；<br>const hash = crypto.createHmac(‘sha1’, key)//创建加密方式：<br>.update(header + payload)  //加密数据：<br>.digest(‘hex’);     //数据转码：</p>
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/12/mocha测试/" rel="next" title="mocha">
+                <i class="fa fa-chevron-left"></i> mocha
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/04/一些数组方法/" rel="prev" title="一些数组方法">
+                一些数组方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="侯迪迪" />
+            
+              <p class="site-author-name" itemprop="name">侯迪迪</p>
+              <p class="site-description motion-element" itemprop="description">一个web前端开发工程师，个人对vue,react有独特见解</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="193096567">
+                      
+                        <i class="fa fa-fw fa-qq"></i>193096567</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/houdidi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github-square"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-weixin"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope-open"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">侯迪迪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 D 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash;  v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

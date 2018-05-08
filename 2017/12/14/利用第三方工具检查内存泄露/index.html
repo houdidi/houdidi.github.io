@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第三方监测工具有很多，这里选取几款比较好用的推荐给大家Visual Leak Detecter应用环境：Windows + VC编程语言：C/C++使用方法：只需包含头文件vld.h，并添加提供的lib结果输出：输出到VC的调试窗口中设计思路： 注册_CrtSetAllocHook钩子函数，使用VC自带的CRT Debug Heap优缺点：可以获得内存泄露点的调用堆栈，可以得到内存泄露的完整数据">
+<meta name="keywords" content="js,web,css,html5,博客,前端,编程,工程师,攻城狮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用第三方工具检查内存泄露">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/利用第三方工具检查内存泄露/index.html">
+<meta property="og:site_name" content="这真是个有趣的世界啊">
+<meta property="og:description" content="第三方监测工具有很多，这里选取几款比较好用的推荐给大家Visual Leak Detecter应用环境：Windows + VC编程语言：C/C++使用方法：只需包含头文件vld.h，并添加提供的lib结果输出：输出到VC的调试窗口中设计思路： 注册_CrtSetAllocHook钩子函数，使用VC自带的CRT Debug Heap优缺点：可以获得内存泄露点的调用堆栈，可以得到内存泄露的完整数据">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-08T11:12:12.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用第三方工具检查内存泄露">
+<meta name="twitter:description" content="第三方监测工具有很多，这里选取几款比较好用的推荐给大家Visual Leak Detecter应用环境：Windows + VC编程语言：C/C++使用方法：只需包含头文件vld.h，并添加提供的lib结果输出：输出到VC的调试窗口中设计思路： 注册_CrtSetAllocHook钩子函数，使用VC自带的CRT Debug Heap优缺点：可以获得内存泄露点的调用堆栈，可以得到内存泄露的完整数据">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/利用第三方工具检查内存泄露/"/>
+
+
+
+
+
+  <title>利用第三方工具检查内存泄露 | 这真是个有趣的世界啊</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">这真是个有趣的世界啊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/利用第三方工具检查内存泄露/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用第三方工具检查内存泄露</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T23:11:12+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code></code></p>
+<p>第三方监测工具有很多，这里选取几款比较好用的推荐给大家<br>Visual Leak Detecter<br>应用环境：Windows + VC<br>编程语言：C/C++<br>使用方法：只需包含头文件vld.h，并添加提供的lib<br>结果输出：输出到VC的调试窗口中<br>设计思路： 注册_CrtSetAllocHook钩子函数，使用VC自带的CRT Debug Heap<br>优缺点：可以获得内存泄露点的调用堆栈，可以得到内存泄露的完整数据<br>如何获取：<a href="http://www.codeproject.com/Articles/9815/Visual-Leak-Detector-Enhanced-Memory-Leak-Detectio" target="_blank" rel="noopener">http://www.codeproject.com/Articles/9815/Visual-Leak-Detector-Enhanced-Memory-Leak-Detectio</a></p>
+<p>Bounds Checker<br>应用环境：Windows + VC6.0<br>编程语言：C/C++<br>使用方法：安装使用，会自动在VC内创建右键菜单<br>结果输出：输出到VC的调试窗口中<br>设计思路： 未知<br>优缺点：可以检测内存泄露；资源泄漏；对指针的错误操作，内存读、写溢出；使用未初始化的内存<br>如何获取：<a href="http://3ddown.com/soft/31594.htm,安装licence时，需要将日期调整为2008年，然后安装licence。有一个licence安装后显示是8.3的，但是可以使用。" target="_blank" rel="noopener">http://3ddown.com/soft/31594.htm,安装licence时，需要将日期调整为2008年，然后安装licence。有一个licence安装后显示是8.3的，但是可以使用。</a></p>
+<p>mtrace<br>应用环境：Linux GLIBC<br>编程语言：C<br>使用方法： 包含头文件mcheck.h，定义环境变量MALLOC_TRACE为输出文件名，程序开始时调用mtrace()即可。<br>结果输出：用户指定的文件<br>设计思路： 为malloc,realloc,free函数添加钩子函数,记录每一对malloc-free的执行<br>优缺点：只能检查使用malloc/realloc/free造成的的内存泄露<br>如何获取：GLIBC自带，可直接使用</p>
+<p>memwatch<br>应用环境：Linux<br>编程语言：C<br>使用方法：  加入memwatch.h，编译时加上-DMEMWATCH -DMW_STDIO及memwatch.c<br>结果输出：输出文件名称为memwatch.log，在程序执行期间，错误提示都会显示在stdout上<br>设计思路：将malloc/realloc/calloc/strdup/free等重定义为mwMalloc(sz, <strong>FILE</strong>, <strong>LINE</strong>)等，内部维护一个操作链表<br>优缺点：能检测双重释放（double-free）、错误释放（erroneous free）、内存泄漏（unfreed memory）、溢出(Overflow)、下溢(Underflow)等等<br>如何获取：<a href="http://memwatch.sourceforge.net/" target="_blank" rel="noopener">http://memwatch.sourceforge.net/</a></p>
+<p>valgrind<br>应用环境：Linux<br>编程语言：C/C++<br>使用方法：  加入memwatch.h，编译时加上-DMEMWATCH -DMW_STDIO及memwatch.c<br>结果输出：输出文件名称为memwatch.log，在程序执行期间，错误提示都会显示在stdout上<br>设计思路：根据软件的内存操作维护一个有效地址空间表和无效地址空间表（进程的地址空间）<br>优缺点：能够检测：<br>使用未初始化的内存 (Use of uninitialised memory)<br>使用已经释放了的内存 (Reading/writing memory after it has been free’d)<br>使用超过 malloc分配的内存空间(Reading/writing off the end of malloc’d blocks)<br>对堆栈的非法访问 (Reading/writing inappropriate areas on the stack)<br>申请的空间是否有释放 (Memory leaks – where pointers to malloc’d blocks are lost forever)<br>如何获取：<a href="http://valgrind.org/" target="_blank" rel="noopener">http://valgrind.org/</a></p>
+<p>debug_new<br>应用环境：Linux/Windows<br>编程语言：C++<br>使用方法： 包含头文件debug_new.h，链接debug_new.cpp<br>结果输出：控制台console<br>设计思路： 通过重载new和delete操作符来捕获内存申请/释放请求，并在程序内部维护一个全局静态变量的哈希链表。在new操作符中，不仅仅分配用户所要求的内存，而是在为每次分配的内存都添加一个头部，存储着此次分配的位置信息和链表指针，new返回的是分配的这块内存加上头部偏移后的值，而在之前已经将此返回值作了HASH计算并添加到HASH链表中了。delete的时候先根据要释放的指针地址做HASH计算，然后再遍历数组HASH值处的链表进行查找，如果找到则将该节点移除，未找到就abort。这样在程序结束之后，通过检查此数组中是否还有未释放的内存块来确定是否有内存泄露。<br>优缺点：跨平台，仅用于C++程序，<br>如何获取：<a href="http://www.ibm.com/developerworks/cn/linux/l-mleak2/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/linux/l-mleak2/index.html</a><br>工具原理分析<br>以上的这些分析工具，所使用的方法大致分为以下几种：<br>1、注册内存分配/释放钩子函数(hook)。在Linux下可以malloc_hook, free_hook等5个钩子函数，在Windows下可以注册_CrtSetAllocHook钩子函数，这样在分配内存的时候就可以捕获这一请求并加以处理。Visual Leak Detecter和mtrace使用此方式。<br>2、使用宏定义替换。将用户代码中的malloc, free 替换为宏定义的 mwMalloc(sz, <strong>FILE</strong>, <strong>LINE</strong>)等自定义函数，从而跟踪内存请求，memwatch即使用此方式。<br>3、操作符重载。此方法仅用于C++语言中，通过重载new、delete操作符来实现跟踪内存请求，重载后的操作符类似于钩子函数意义。debug_new采用此方式。</p>
+<p>这些工具的输出方式也分以下几种：<br>1、Windows VC环境下一般输出到调试窗口中，因此VC本身就提供了一个理想的输出场所，并且GUI应用程序输出到标准输出时不可见的。Visual Leak Detecter采用此法。<br>2、输出到标准输出或标准错误输出：控制台应用程序可以输出到屏幕，如memwatch, valgrind, debug_new都是采用这种方法。<br>3、输出到日志文件：将结果输出到用户指定或默认的日志文件中，如mtrace和memwatch。</p>
+<p>此外，这些工具的内存检测方式无非也分为两种：<br>1、维护一个内存操作链表，当有内存申请操作时，将其加入此链表中，当有释放操作时，从申请操作从链表中移除。如果到程序结束后此链表中还有内容，说明有内存泄露了；如果要释放的内存操作没有在链表中找到对应操作，则说明是释放了多次。使用此方法的有VC内置的调试工具，Visual Leak Detecter，mtrace, memwatch, debug_new。<br>2、模拟进程的地址空间。仿照操作系统对进程内存操作的处理，在用户态下维护一个地址空间映射，此方法要求对进程地址空间的处理有较深的理解。因为Windows的进程地址空间分布不是开源的，所以模拟起来很困难，因此只支持Linux。采用此方法的是valgrind。</p>
+<p>总结：<br>检测内存泄漏的关键是要能截获住对分配内存和释放内存的函数的调用。截获住这两个函数，我们就能跟踪每一块内存的生命周期，比如，每当成功的分配一块内存后，就把它的指针加入一个全局的list中；每当释放一块内存，再把它的指针从list中删除。这样，当程序结束的时候，list中剩余的指针就是指向那些没有被释放的内存。如果要检测堆内存的泄漏，那么需要截获住malloc/realloc/free和new/delete就可以了（其实new/delete最终也是用malloc/free的，所以只要截获前面一组即可）。对于其他的泄漏，可以采用类似的方法，截获住相应的分配和释放函数。比如，要检测BSTR的泄漏，就需要截获SysAllocString/SysFreeString；要检测HMENU的泄漏，就需要截获CreateMenu/ DestroyMenu。（有的资源的分配函数有多个，释放函数只有一个，比如，SysAllocStringLen也可以用来分配BSTR，这时就需要截获多个分配函数）<br></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/27/markdown可以使用/" rel="next" title="markdown可以使用">
+                <i class="fa fa-chevron-left"></i> markdown可以使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/08/个人简历/" rel="prev" title="个人简历">
+                个人简历 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="侯迪迪" />
+            
+              <p class="site-author-name" itemprop="name">侯迪迪</p>
+              <p class="site-description motion-element" itemprop="description">一个web前端开发工程师，个人对vue,react有独特见解</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="193096567">
+                      
+                        <i class="fa fa-fw fa-qq"></i>193096567</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/houdidi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github-square"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-weixin"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope-open"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">侯迪迪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 D 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash;  v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="定位锚点透明 一、position 定位属性和属性值position 定位属性，检索对象的定位方式；语法：position：static /absolute/relative/fixed取值：1、static：默认值，无特殊定位，对象遵循HTML原则；2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素">
+<meta name="keywords" content="js,web,css,html5,博客,前端,编程,工程师,攻城狮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定位锚点透明">
+<meta property="og:url" content="http://yoursite.com/2015/04/22/定位锚点透明/index.html">
+<meta property="og:site_name" content="这真是个有趣的世界啊">
+<meta property="og:description" content="定位锚点透明 一、position 定位属性和属性值position 定位属性，检索对象的定位方式；语法：position：static /absolute/relative/fixed取值：1、static：默认值，无特殊定位，对象遵循HTML原则；2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-08T09:11:55.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定位锚点透明">
+<meta name="twitter:description" content="定位锚点透明 一、position 定位属性和属性值position 定位属性，检索对象的定位方式；语法：position：static /absolute/relative/fixed取值：1、static：默认值，无特殊定位，对象遵循HTML原则；2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/04/22/定位锚点透明/"/>
+
+
+
+
+
+  <title>定位锚点透明 | 这真是个有趣的世界啊</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">这真是个有趣的世界啊</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/22/定位锚点透明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">定位锚点透明</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-22T13:33:20+08:00">
+                2015-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><h1>定位锚点透明</h1><p></p>
+<p></p><h2>一、position 定位属性和属性值</h2><br>position 定位属性，检索对象的定位方式；<br>语法：position：static /absolute/relative/fixed<br>取值：<br>1、static：默认值，无特殊定位，对象遵循HTML原则；<br>2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素进行绝对定位；如果不存在这样的父对象，则依据根元素(html)《浏览器》进行定位，而其层叠通过z-index属性定义<br>3、relative ：相对定位，该对象的文档流位置不动，将依据right，top，left，bottom（相对定位）等属性在正常文档流中偏移位置；其层叠通过z-index属性定义<br>4、fixed：(固定定位)未支持，对象定位遵从绝对定位方式（absolute）；但是要遵守一些规范（IE6浏览器不支持此定位） ；<p></p>
+<p></p><h2>二、定位元素的层级属性</h2><br>z-index : auto |number 检索或设置对象的层叠顺序。<br>auto：默认值。遵从其父对象<br>number:无单位的整数值。可为负数<br>没有设置z-index时，最后写的对象优先显示在上层，设置后，数值越大，层越靠上；<br>说明：<br>1）较大 数值的对象会覆盖在较小 数值的对象之上。如两个绝对定位对象的此属性具有同样的 number 值，那么将依据它们在HTML文档中声明的顺序层叠。<br>此属性仅仅作用于 position 属性值 relative 或 absolute,fixed 的对象。<p></p>
+<p></p><h2>三、包含块的概念及作用</h2><br>包含块是绝对定位的基础，包含块就是为绝对定位元素提供坐标，偏移和显示范围的参照物，即确定绝对定位的偏移起点和百分比 长度的参考；<br>默认状态下，body是一个大的包含块，所有绝对定位的元素都是根据窗口来定自己所处的位置和百分比大小的显示的，如果我们定义了包含元素为包含元素块以后，对于被包含的绝对定位元素来说，就会根据最接近的具有定位功能的上级包含元素来定位自己的显示位置。<br>定义元素为包含块：给绝对定位元素的父元素添加声明position：relative；<br>如果我们的父素设置了position:absolute;那么子元素也会相对父元素来定义自己的位置。<br>绝对和相对定位的区别<br>1、参照物不同，绝对定位（absolute）的参照物是包含块（父级），相对定位的参照物是元素本身位置；<p></p>
+<p>2、绝对定位将对象从文档流中拖离出来因此不占据空间，相对定位不破坏正常的文档流顺序无论是否进行移动，元素仍然占据原来的空间。</p>
+<p></p><h2>四、锚点连接的语法和应用场景</h2><br>命名锚点链接的应用<br>定义：<br>是网页制作中超级链接的一种，又叫命名锚记。命名锚记像一个迅速定位器一样是一种页面内的超级链接，运用相当普遍。<br>命名锚点的作用：在同一页面内的不同位置进行跳转。<br>制作锚标记：<br>1)给元素定义命名锚记名<br>语法：&lt;标记 id=”命名锚记名”&gt; &lt;/标记&gt;<br>2)命名锚记连接<br>语法：<a href="#命名锚记名称"></a><p></p>
+<p></p><h2>五、透明写法</h2><br>IE浏览器写法：filter:alpha(opacity=value);取值范围 1-100<br>兼容其他浏览器写法：opacity:0.value;(value的取值范围<br>0-1 0.1,0.2,0.3—–0.9—1)<p></p>
+<p></p><h2>六、Flash和marquee(滚动字幕)</h2><br>1、插入flash \<br>2）将flash背景设置为透明<br>embed wmode=”transparent” /<br>给embed标记添加属性：wmode=”transparent”<br>说明：flash源文件格式.fla,<br>导出影片为.swf,<br>创建播放器格式为.exe.<br>gif格式：.gif<br>3）IE中不显示flash,可做如下操作：<br>A.下载安装flash player;<br>B.打开IE浏览器，选择工具菜单–Internet选项—-安全—-低。<br>2、滚动字幕的应用：<br> marquee<br>behavior（行为）=”scroll(滚动)/alternate（晃动）”direction（方向）=”up(从下向上)/down（从上向下）/left（从右向左）/right（从左向右）”<br>scrollamount（滚动速度）=”value”height=”value(上下滚动范围)”width=””(左右滚动范围)&gt;<br>内容<br>/marquee<p></p>
+<p></p><h2>七、overflow中的滚动条</h2><br>1,Overflow内容溢出时的设置<br>属性：<br>overflow 水平及垂直方向内容溢出时的设置<br>overflow-x 水平方向内容溢出时的设置<br>overflow-y 垂直方向内容溢出时的设置<br>以上三个属性设置的属性值：<br>visible、scroll、hidden、auto、<br>visible 默认值。使用该值时，无论设置的”width”和”height”的值是多少，其中的内容无论是否超出范围都将被强制显示。<br> hidden 效果与visible相反。任何超出”width”和”height”的内容都会不可见。<br> scroll 无论内容是否超越范围，都将显示滚动条。<br> auto 当内容超出范围时，显示滚动条，否则不显示。<br>自己定义滚动条的颜色<br>Body {<br>scrollbar-arrow-color: #f4ae21; /<em>图6,三角箭头的颜色</em>/<br>scrollbar-face-color: #333; /<em>图5,立体滚动条的颜色</em>/<br>scrollbar-3dlight-color: #666; /<em>图1,立体滚动条亮边的颜色</em>/<br>scrollbar-highlight-color: #666; /<em>图2,滚动条空白部分的颜色</em>/<br>scrollbar-shadow-color: #999; /<em>图3,立体滚动条阴影的颜色</em>/<br>scrollbar-darkshadow-color: #666; /<em>图4,立体滚动条强阴影的颜色</em>/<br>scrollbar-track-color: #666; /<em>图7,立体滚动条背景颜色</em>/<br>scrollbar-base-color:#f8f8f8; /<em>滚动条的基本颜色</em>/<br>}<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/14/Html一些细节Css响应式/" rel="next" title="Html一些细节Css响应式">
+                <i class="fa fa-chevron-left"></i> Html一些细节Css响应式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/20/react/" rel="prev" title="react">
+                react <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="侯迪迪" />
+            
+              <p class="site-author-name" itemprop="name">侯迪迪</p>
+              <p class="site-description motion-element" itemprop="description">一个web前端开发工程师，个人对vue,react有独特见解</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="193096567">
+                      
+                        <i class="fa fa-fw fa-qq"></i>193096567</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/houdidi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github-square"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-weixin"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://houdidi.xyz/" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope-open"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">定位锚点透明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">一、position 定位属性和属性值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">二、定位元素的层级属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">三、包含块的概念及作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">四、锚点连接的语法和应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.5.</span> <span class="nav-text">五、透明写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.6.</span> <span class="nav-text">六、Flash和marquee(滚动字幕)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.7.</span> <span class="nav-text">七、overflow中的滚动条</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">侯迪迪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 D 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash;  v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
