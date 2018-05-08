@@ -352,6 +352,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/移动端动态设置字体大小！！！！！！！！/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/01/移动端动态设置字体大小！！！！！！！！/" itemprop="url">移动端动态设置字体大小！！！！！！！！</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T02:25:10+08:00">
+                2018-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code><br>    <code>document.documentElement.style.fontSize = document.documentElement.clientWidth/3.2 + &#39;px&#39;</code><br></code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/利用第三方工具检查内存泄露/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1340,129 +1460,6 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/首屏加载时间/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/17/首屏加载时间/" itemprop="url">首屏加载时间</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T21:10:12+08:00">
-                2017-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code><br>前端的话，我搜索之后写了一个方法，但是还没有测试和投入使用，等我测试之后再来。先show code。<br>有些接口不方便发全，我就写首屏这部分的逻辑：<br>//首屏时间尝试：<br>//1,获取首屏基线高度<br>//2,计算出基线dom元素之上的所有图片元素<br>//3,所有图片onload之后为首屏显示时间<br>//<br>function getOffsetTop(ele) {<br>var offsetTop = ele.offsetTop;<br>if (ele.offsetParent !== null) {<br>offsetTop += getOffsetTop(ele.offsetParent);<br>}<br>return offsetTop;<br>}</code></p>
-<p>var firstScreenHeight = win.screen.height;<br>var firstScreenImgs = [];<br>var isFindLastImg = false;<br>var allImgLoaded = false;<br>var t = setInterval(function() {<br>var i, img;<br>if (isFindLastImg) {<br>if (firstScreenImgs.length) {<br>for (i = 0; i &lt; firstScreenImgs.length; i++) {<br>img = firstScreenImgs[i];<br>if (!img.complete) {<br>allImgLoaded = false;<br>break;<br>} else {<br>allImgLoaded = true;<br>}<br>}<br>} else {<br>allImgLoaded = true;<br>}<br>if (allImgLoaded) {<br>collect.add({<br>firstScreenLoaded: startTime - Date.now()<br>});<br>clearInterval(t);<br>}<br>} else {<br>var imgs = body.querySelector(‘img’);<br>for (i = 0; i &lt; imgs.length; i++) {<br>img = imgs[i];<br>var imgOffsetTop = getOffsetTop(img);<br>if (imgOffsetTop &gt; firstScreenHeight) {<br>isFindLastImg = true;<br>break;<br>} else if (imgOffsetTop &lt;= firstScreenHeight &amp;&amp; !img.hasPushed) {<br>img.hasPushed = 1;<br>firstScreenImgs.push(img);<br>}<br>}<br>}<br>}, 0);</p>
-<p>doc.addEventListener(‘DOMContentLoaded’, function() {<br>var imgs = body.querySelector(‘img’);<br>if (!imgs.length) {<br>isFindLastImg = true;<br>}<br>});</p>
-<p>win.addEventListener(‘load’, function() {<br>allImgLoaded = true;<br>isFindLastImg = true;<br>if (t) {<br>clearInterval(t);<br>}<br>collect.log(collect.global);<br>});<br>解释一下思路，大概就是判断首屏有没有图片，如果没图片就用domready时间，如果有图，分2种情况，图在首屏，图不在首屏，如果在则收集，并判断加载状态，加载完毕之后则首屏完成加载，如果首屏没图，找到首屏下面的图，立刻触发首屏完毕。<br>可以想象这么做前端收集是不准的，但是可以确保最晚不会超过win load，所以应该还算有些意义。。没办法，移动端很多浏览器不支持performance api，所以土办法前端收集，想出这么个黑魔法，在基线插入节点收集也是个办法，但是不友好，而且现在手机屏幕这么多。。<br></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1517,7 +1514,7 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

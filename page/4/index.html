@@ -233,6 +233,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/14/nodejs基础（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="侯迪迪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="这真是个有趣的世界啊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/14/nodejs基础（一）/" itemprop="url">nodejs基础（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-14T23:22:24+08:00">
+                2016-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code></code></p>
+<ol>
+<li>nodejs 后端语言<br>chrome v8引擎<br>事件驱动，非阻塞<br>nodejs是单线程语言，一个程序最少一个进程，一个进程最少一个线程<br>Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。<br>nodejs的缺点：异步导致的回调地狱(callback hell)<br>nodejs只有一个线程，它不是多线程语言。</li>
+</ol>
+<p>前端语言：运行在用户的浏览器上<br>后端语言：运行在服务器上</p>
+<p>API文档<br><a href="http://nodejs.cn/api/" target="_blank" rel="noopener">http://nodejs.cn/api/</a></p>
+<ol start="2">
+<li>http模块<br>createServer<br>默认http端口：80<br>默认https端口：443<br>request 客户端发送给服务器的请求<br>response 服务器端发送给客户端的响应</li>
+</ol>
+<p>后端语言没有alert，有console<br>后端没有window，有global对象<br>var server = http.createServer(function(request, response){<br>    …各种操作;<br>    response.end();<br>})<br>server.listen(8080)<br>注意防火墙</p>
+<ol start="3">
+<li><p>fs文件操作<br>fs.writeFile(path, data [, option], callback(err))<br>fs.readFile(path [, option], callback(err, data))<br>fs.readdir(path, callback(err, files))<br>fs.stat(path, callback(err, stat))<br>fs.rmdir(path, callback(err))<br>fs.unlink(path, callback(err))</p>
+</li>
+<li><p>url 对地址的转换<br>var {URL} = require(“url”)<br>var urlObj = new URL(“”);</p>
+</li>
+</ol>
+<p>var url = require(“url”);<br>var urlObj = url.parse(“”, true);<br>urlObj.query.psw</p>
+<ol start="5">
+<li>events<br>var EventEmitter = require(“events”)<br>var em = new EventEmitter();</li>
+</ol>
+<p>em.on(“xyz”, function(data){<br>    console.log(data)<br>})</p>
+<p>em.emit(“xyz”, “世界真美好”)<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/13/mysql基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1311,134 +1452,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/04/22/定位锚点透明/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="侯迪迪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="这真是个有趣的世界啊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/04/22/定位锚点透明/" itemprop="url">定位锚点透明</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-22T13:33:20+08:00">
-                2015-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p></p><h1>定位锚点透明</h1><p></p>
-<p></p><h2>一、position 定位属性和属性值</h2><br>position 定位属性，检索对象的定位方式；<br>语法：position：static /absolute/relative/fixed<br>取值：<br>1、static：默认值，无特殊定位，对象遵循HTML原则；<br>2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素进行绝对定位；如果不存在这样的父对象，则依据根元素(html)《浏览器》进行定位，而其层叠通过z-index属性定义<br>3、relative ：相对定位，该对象的文档流位置不动，将依据right，top，left，bottom（相对定位）等属性在正常文档流中偏移位置；其层叠通过z-index属性定义<br>4、fixed：(固定定位)未支持，对象定位遵从绝对定位方式（absolute）；但是要遵守一些规范（IE6浏览器不支持此定位） ；<p></p>
-<p></p><h2>二、定位元素的层级属性</h2><br>z-index : auto |number 检索或设置对象的层叠顺序。<br>auto：默认值。遵从其父对象<br>number:无单位的整数值。可为负数<br>没有设置z-index时，最后写的对象优先显示在上层，设置后，数值越大，层越靠上；<br>说明：<br>1）较大 数值的对象会覆盖在较小 数值的对象之上。如两个绝对定位对象的此属性具有同样的 number 值，那么将依据它们在HTML文档中声明的顺序层叠。<br>此属性仅仅作用于 position 属性值 relative 或 absolute,fixed 的对象。<p></p>
-<p></p><h2>三、包含块的概念及作用</h2><br>包含块是绝对定位的基础，包含块就是为绝对定位元素提供坐标，偏移和显示范围的参照物，即确定绝对定位的偏移起点和百分比 长度的参考；<br>默认状态下，body是一个大的包含块，所有绝对定位的元素都是根据窗口来定自己所处的位置和百分比大小的显示的，如果我们定义了包含元素为包含元素块以后，对于被包含的绝对定位元素来说，就会根据最接近的具有定位功能的上级包含元素来定位自己的显示位置。<br>定义元素为包含块：给绝对定位元素的父元素添加声明position：relative；<br>如果我们的父素设置了position:absolute;那么子元素也会相对父元素来定义自己的位置。<br>绝对和相对定位的区别<br>1、参照物不同，绝对定位（absolute）的参照物是包含块（父级），相对定位的参照物是元素本身位置；<p></p>
-<p>2、绝对定位将对象从文档流中拖离出来因此不占据空间，相对定位不破坏正常的文档流顺序无论是否进行移动，元素仍然占据原来的空间。</p>
-<p></p><h2>四、锚点连接的语法和应用场景</h2><br>命名锚点链接的应用<br>定义：<br>是网页制作中超级链接的一种，又叫命名锚记。命名锚记像一个迅速定位器一样是一种页面内的超级链接，运用相当普遍。<br>命名锚点的作用：在同一页面内的不同位置进行跳转。<br>制作锚标记：<br>1)给元素定义命名锚记名<br>语法：&lt;标记 id=”命名锚记名”&gt; &lt;/标记&gt;<br>2)命名锚记连接<br>语法：<a href="#命名锚记名称"></a><p></p>
-<p></p><h2>五、透明写法</h2><br>IE浏览器写法：filter:alpha(opacity=value);取值范围 1-100<br>兼容其他浏览器写法：opacity:0.value;(value的取值范围<br>0-1 0.1,0.2,0.3—–0.9—1)<p></p>
-<p></p><h2>六、Flash和marquee(滚动字幕)</h2><br>1、插入flash \<br>2）将flash背景设置为透明<br>embed wmode=”transparent” /<br>给embed标记添加属性：wmode=”transparent”<br>说明：flash源文件格式.fla,<br>导出影片为.swf,<br>创建播放器格式为.exe.<br>gif格式：.gif<br>3）IE中不显示flash,可做如下操作：<br>A.下载安装flash player;<br>B.打开IE浏览器，选择工具菜单–Internet选项—-安全—-低。<br>2、滚动字幕的应用：<br> marquee<br>behavior（行为）=”scroll(滚动)/alternate（晃动）”direction（方向）=”up(从下向上)/down（从上向下）/left（从右向左）/right（从左向右）”<br>scrollamount（滚动速度）=”value”height=”value(上下滚动范围)”width=””(左右滚动范围)&gt;<br>内容<br>/marquee<p></p>
-<p></p><h2>七、overflow中的滚动条</h2><br>1,Overflow内容溢出时的设置<br>属性：<br>overflow 水平及垂直方向内容溢出时的设置<br>overflow-x 水平方向内容溢出时的设置<br>overflow-y 垂直方向内容溢出时的设置<br>以上三个属性设置的属性值：<br>visible、scroll、hidden、auto、<br>visible 默认值。使用该值时，无论设置的”width”和”height”的值是多少，其中的内容无论是否超出范围都将被强制显示。<br> hidden 效果与visible相反。任何超出”width”和”height”的内容都会不可见。<br> scroll 无论内容是否超越范围，都将显示滚动条。<br> auto 当内容超出范围时，显示滚动条，否则不显示。<br>自己定义滚动条的颜色<br>Body {<br>scrollbar-arrow-color: #f4ae21; /<em>图6,三角箭头的颜色</em>/<br>scrollbar-face-color: #333; /<em>图5,立体滚动条的颜色</em>/<br>scrollbar-3dlight-color: #666; /<em>图1,立体滚动条亮边的颜色</em>/<br>scrollbar-highlight-color: #666; /<em>图2,滚动条空白部分的颜色</em>/<br>scrollbar-shadow-color: #999; /<em>图3,立体滚动条阴影的颜色</em>/<br>scrollbar-darkshadow-color: #666; /<em>图4,立体滚动条强阴影的颜色</em>/<br>scrollbar-track-color: #666; /<em>图7,立体滚动条背景颜色</em>/<br>scrollbar-base-color:#f8f8f8; /<em>滚动条的基本颜色</em>/<br>}<p></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1493,7 +1506,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
